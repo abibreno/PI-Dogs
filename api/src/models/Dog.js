@@ -9,4 +9,6 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
   });
-};
+}; 
+
+abigail
