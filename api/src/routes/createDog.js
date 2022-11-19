@@ -1,6 +1,5 @@
 const { Router} = require("express");
 const { Dogs, Temperament} = require("../db");
-const { dogsDBinfo } = require("./controllers/DogsInfo");
 const router = Router();
 
 // [ ] POST /dogs:
