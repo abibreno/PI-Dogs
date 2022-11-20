@@ -56,7 +56,7 @@ export default function rootReducer (state = initialState, action) {
             if(action.payload === "az"){
                 return{
                     ...state,
-                    dogs: state.dogs.sort(function(a,b){
+                    dogs: state.dogs.sort(function(a,b){ //ordena de a-z
                         if(a.name > b.name){
                             return 1
                         } if(b.name > a.name){
