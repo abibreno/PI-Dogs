@@ -1,0 +1,72 @@
+.CardContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.homeDiv{
+    background-color: aquamarine;
+    
+}
+
+.welcome{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.filterBy{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-right: 500px;
+    background-color: aqua;
+    border: 1px solid;
+}
+
+.filterBy:hover{
+    background-color: azure;
+}
+
+.filterTemps{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-right: 500px;
+    background-color: red;
+    border: 1px;
+    transform: translateY(2px);
+}
+
+.filterTemps:hover{
+    background-color: greenyellow;
+}
+
+.filterBreeds{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 500px;
+    transform: translateY(-24px);
+    background-color: grey;
+    border: 1px solid;
+}
+
+.filterBreeds:hover{
+    background-color: bisque;
+}
+
+.createButton{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 500px;
+    background-color: brown;
+    transform: translateY(20px);
+    border: 1px solid;
+}
+
+.createButton:hover{
+    background-color: blue;
+}
+
+.refBtn{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: aquamarine;
+    cursor: pointer;
+    border: 1px solid;
+}
+
+.refBtn:hover{
+    background-color: black;
+}

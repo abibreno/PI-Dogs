@@ -1,30 +1,26 @@
-const { Router} = require("express");
-const { Dogs, Temperament} = require("../db");
+const {Router} = require('express');
 const router = Router();
+const {Dogs, Temperament} = require('../db')
 
-// [ ] POST /dogs:
-// Recibe los datos recolectados desde el formulario controlado de la ruta de creación de raza de perro por body
-// Crea una raza de perro en la base de datos relacionada con sus temperamentos
-
-router.post("/dogs", async (req, res) => {
-    const {name, life_span, min_weight, max_weight, min_height, max_height, image, temperament} = req.body; //traigo de mi modelo.
-    try{
-        const newDog = await Dogs.create({ //propiedades que quiero que tenga el perro.
-            name,
-            life_span,
-            min_weight,
-            max_weight,
-            min_height,
-            max_height,
-            image
+router.post('/dogs', async (req, res) => {
+    const {name, life_span, min_weight, max_weight, min_height, max_height, image, temperament} = req.body;
+    try { 
+        const dog = await Dogs.create({
+             name,
+             min_weight,
+             max_weight,
+             min_height,
+             max_height,
+             life_span,
+             image
         })
-        const tempDb = await Temperament.findAll({ //trigo los temp de la bd.
+        const temperamentDB = await Temperament.findAll({
             where: {
                 name: temperament,
             }
         })
-        newDog.addTemperament(tempDb) //agrego el temperamento al nuevo perro.
-        res.send(newDog)
+        dog.addTemperament(temperamentDB) 
+        res.send(dog) 
     } catch (error) {
         res.send(error)
     }

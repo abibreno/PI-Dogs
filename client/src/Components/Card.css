@@ -1,0 +1,97 @@
+.dogsContainer{
+    margin: 15px;
+}
+
+.dogsCard{
+    border-radius: 15px;
+    background: antiquewhite;
+    border-bottom: 4px solid gray;
+    height: 400px;
+    width: 200px;
+    margin-left: 20%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    flex-direction: column;
+    transition: all 0.4s ease;
+}
+
+.cardName{
+    font-size: 20px;
+}
+
+.dogsImage{
+    border-radius: 10px;
+    margin-top: -3px;
+    width: 80%;
+    max-width: 100%;
+}
+
+img{
+    width: 180px;
+    height: 300px;
+    max-height: 150px;
+    object-fit: cover;
+    margin-left: 20px;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+.cardTemperaments{
+    color: black;
+    background-color: antiquewhite;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.cardWeight{
+    color: black;
+    background-color: antiquewhite;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+a{
+    text-decoration: none;
+    width: 100%;
+    color: azure;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+a:hover {
+    color:  #53273d;
+    animation: rotate 0.7s ease-in-out both;
+}
+@keyframes rotate
+{
+    0%
+  {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  25%
+  {
+    transform: rotate(3deg) translate3d(0, 0, 0);
+  }
+  50%
+  {
+    transform: rotate(-3deg) translate3d(0, 0, 0);
+  }
+  75%
+  {
+    transform: rotate(1deg) translate3d(0, 0, 0);
+  }
+  50%
+  {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+
+}
+
+
+
