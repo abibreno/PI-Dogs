@@ -90,9 +90,9 @@ export function createDog (payload) {
     return async function(dispatch){ 
         try{
             await axios.post('http://localhost:3001/dogs', payload);
-            return {
+            return dispatch ( {
                 type: CREATE_DOG,
-                }
+                })
             } 
         catch(error){
               alert("Post failed")

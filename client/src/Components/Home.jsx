@@ -1,76 +1,74 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector} from "react-redux";
-import {Link} from "react-router-dom";
-import {getDogs, orderBy, filterByTemperaments, getTemperaments, filterByBreed} from "../Redux/dogsActions";
-import "./Home.css";
-import Card from "./Card";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { getDogs, orderBy, filterByTemperaments, getTemperaments, filterByBreed } from "../Redux/dogsActions";
+import Card from './Card'
+import './Home.css'
 import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
-import loading from "../Fotos/otrafoto.jpg"
-
-
-export default function Home(){
-
-    const dispatch = useDispatch(); //Para poder usar las acciones.
-    const allDogs = useSelector((state) => state.dogs); //para poder usar el estado.
-    const temperaments = useSelector((state) => state.temperaments); //usar estado.
-    const [, setOrder] = useState("All"); //ordenamiento.
-    const [, setBreeds] = useState("All"); //ordenamiento.
-
-    const [currentPage, setCurrentPage] = useState(1); //la pagina empieza en 1
-    const [dogPerPage] = useState(8); //8xpagina.
-    const indexOfLastDog = currentPage * dogPerPage; //ultimo perro.
-    const indexFirstDog = indexOfLastDog - dogPerPage; //calcula 1er perro.
-    const currentDogs = allDogs.slice(indexFirstDog, indexOfLastDog); //calcula perros x pagina.
-    const [temperament, setTemperament] = useState("All"); // filtro por temperamento.
-
-    const pagination = (currentPageNumber) => {
-        setCurrentPage(currentPageNumber) //actualiza la pagina cuando cambia.
-    };
-
-
-    useEffect(() => { //cuando renderiza ejecuta la accion.
-        setCurrentPage(1)
-    }, [allDogs]) //estado, se ejecuta cunado cambia de page.
-
-    useEffect(() => {
-        dispatch(getDogs()) //traigo todos los perros.
-        dispatch(filterByTemperaments()) //filtra temperamentos.
-        dispatch(getTemperaments()) //trae temperamentos.
-    }, [dispatch]) //se ejecuta cuando cambia.
 
 
 
-    function handleClick (e){
-        e.preventDefault(); //espera que despache la accion
-        dispatch(getDogs());
+export default function Home(){ //esta funcion es la que se encarga de renderizar el componente Home
+
+const dispatch = useDispatch(); //para poder usar las acciones
+const allDogs = useSelector ((state) => state.dogs); //para poder usar el estado
+const temperaments = useSelector ((state) => state.temperaments) // para poder usar el estado
+const [, setOrder] = useState('All')  //estado para el ordenamiento
+const [, setBreeds] = useState('All') //aca lo uso para filtrar por raza
+
+const [currentPage, setCurrentPage] = useState(1) //aca paso (1) para que empiece en la pagina 1
+const [dogsPerPage] = useState(8) //aca paso (8) para que muestre 8 perros por pagina
+const indexOfLastDog = currentPage * dogsPerPage; //aca calculo el ultimo perro de la pagina
+const indexOfFirstDog =  indexOfLastDog - dogsPerPage; //aca calculo el primer perro de la pagina
+const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog) //aca calculo los perros que se van a mostrar en la pagina
+const [temperament, setTemperament] = useState('All') //aca lo uso para filtrar por temperamento
+
+const pagination = (currentPageNumber) => { //esto es para que cuando cambie de pagina se actualice
+    setCurrentPage(currentPageNumber) //esto es para que cuando cambie de pagina se actualice
+}
+
+useEffect(() => { //aca uso el useEffect para que cuando se renderice la pagina se ejecute la accion
+    setCurrentPage(1) //esto es para que cuando cambie de pagina se actualice
+}, [allDogs]) //aca le paso el estado para que se ejecute cuando cambie
+
+useEffect(() => {
+    dispatch(getDogs()) //aca uso la accion para traer los perros
+    dispatch(filterByTemperaments())  //aca uso la accion para traer los temperamentos
+    dispatch(getTemperaments())  //aca uso la accion para traer los temperamentos
+},[dispatch]) //aca le paso el dispatch para que se ejecute cuando cambie
+
+
+
+function handleClick(e){ //handleclick para el ordenamiento
+    e.preventDefault(); //aca uso el preventDefault para que no se recargue la pagina
+    dispatch(getDogs())
     }
 
-    function handleSort (e){ //funcion para ordernar.
-        e.preventDefault();
-        dispatch(orderBy(e.target.value)) //uso action para ordenar.
-        setCurrentPage(1) //actuliza pagina.
-        setOrder(e.target.value) //actualiza el estado.
+function handleSort (e){ //aca uso la funcion para ordenar
+    e.preventDefault() 
+    dispatch(orderBy(e.target.value)) //aca uso la accion para ordenar
+    setCurrentPage(1)  //esto es para que cuando cambie de pagina se actualice
+    setOrder(e.target.value) //setorder para que se actualice el estado
     }
 
-    function handleFilterByTemp (e) { //funcion filtra por temp.
-        e.preventDefault();
-        dispatch(filterByTemperaments(e.target.value))
-        setCurrentPage(1)
-        setTemperament(e.target.value)
+function handleFilterByTemp (e){ //aca uso la funcion para filtrar por temperamento
+    e.preventDefault()
+    dispatch(filterByTemperaments(e.target.value))
+    setCurrentPage(1)
+    setTemperament(e.target.value) 
     }
-
-    function handleFilterByBreed (e) { //filtra x raza.
-        e.preventDefault();
-        dispatch(filterByBreed(e.target.value))
-        setCurrentPage(1)
-        setBreeds(e.target.value)
-    }
-
+   
+function handleFilterByBreed (e){
+    e.preventDefault();
+    dispatch(filterByBreed(e.target.value))
+    setCurrentPage(1)
+    setBreeds(e.target.value) 
+}
 
     return(
-
+        
         <div className="homeDiv">
             <div className="welcome">
             <h1> 🐕 Welcome 🐕 </h1>
@@ -104,10 +102,10 @@ export default function Home(){
                         {temp.name}
                       </option>
                     ))}
-        </select>
+        </select>   
             </div>
 
-            <div >
+            <div >     
         <select className='filterBreeds' onChange = {(e) => {handleFilterByBreed(e)}}> 
             <option value = "all">Breeds</option>
             <option value = "created">Created Breeds</option>
@@ -117,13 +115,15 @@ export default function Home(){
 
             <div  className="Pagination">
             <Pagination
-                dogPerPage = {dogPerPage} 
+                dogsPerPage = {dogsPerPage} 
                 allDogs = {allDogs.length} 
                 pagination = {pagination} 
             />
             </div>
-{currentDogs.length === 0 ?
-            <div><img className='loadingGif' src={loading} alt="Loading..."/></div> :
+
+            {/* <img className='loadingGif' src={loading} alt="Loading..."/> */}
+            {currentDogs.length === 0 ?
+            <div>ALGO</div> :
             <div className="CardContainer">
                 {currentDogs?.map((e) => {
                     return (
@@ -135,7 +135,7 @@ export default function Home(){
                         temperament = { typeof e.temperament === 'string' ? e.temperament : e.temperament?.join(', ')}
                         min_weight = {e.min_weight}
                         max_weight = {e.max_weight}
-                            />
+                            />                     
                     </div>
 )})}
         </div>

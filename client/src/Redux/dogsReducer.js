@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_BY_BREED, GET_DOGS_DETAILS, ORDER_BY, FILTER_BY_TEMPERAMENTS, GET_TEMPERAMENTS, FILTER_BY_BREED, CREATE_DOG, CLEAN } from "./dogsActions";
+import { GET_DOGS, GET_BY_BREED, GET_DOGS_DETAILS, ORDER_BY, FILTER_BY_TEMPERAMENTS, GET_TEMPERAMENTS, FILTER_BY_BREED, CREATE_DOG, CLEAN } from "./dogsActions"
 
 const initialState = {
     dogs : [],
@@ -132,6 +132,7 @@ case CREATE_DOG:
         ...state, // retorna el estado inicial
     }
         default:  // si no es ninguna de las anteriores, entonces que me devuelva el estado inicial
-        return state; // aca me devuelve el estado inicial
+        return {...state}; // aca me devuelve el estado inicial
     }
 }
+

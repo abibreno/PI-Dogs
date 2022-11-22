@@ -6,8 +6,8 @@ const API = 'https://api.thedogapi.com/v1/breeds'
 const getDogs = async() => {
   try{
       const allDogs = await axios.get('https://api.thedogapi.com/v1/breeds');
-      
-          
+
+
           const perros = await allDogs.data.map((e) => {
               return{
                 id: e.id,
@@ -18,16 +18,16 @@ const getDogs = async() => {
                 max_weight: parseInt(e.weight.metric.split('-')[1]) ? parseInt(e.weight.metric.split('-')[1]) : 0,
                 min_height: parseInt(e.height.metric.split('-')[0]) ? parseInt(e.height.metric.split('-')[0]) : 0,
                 max_height: parseInt(e.height.metric.split('-')[1]) ? parseInt(e.height.metric.split('-')[1]) : 0,
-                
 
-                  
-                  
+
+
+
               }
 
           }
-          
+
       );
-     
+
       return perros;
 
   } catch (err) {
