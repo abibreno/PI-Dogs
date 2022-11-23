@@ -7,7 +7,7 @@ export default function LandingPage() {
         <div className='landing'>
             <h1>PI Dogs</h1>
             <Link to='/home'>
-                <button className='btnLan'>🐶 Ingresar 🐶</button>
+                <button className='btnLan'>Ingresar</button>
             </Link>
         </div>
     )
