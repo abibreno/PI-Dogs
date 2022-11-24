@@ -16,22 +16,22 @@
     border-radius: 8px;
     cursor: pointer;
     color: white;
-    border: 2px solid #4b628e;
-    font-size: 20px;
+    border: 2px solid #3e4c65;
+    font-size: 30px;
     background-color: #41506b;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .btnLan:hover{
     background-color: #90f6d7;
-    color: black;
+    color: #41506b;
     border: 2px solid #74f5ce;
 }
 
 .landing h1{
     min-width: 200px;
-    color: #90f6d7;
-    font-size: 60px;
+    color: whitesmoke;
+    font-size: 80px;
     margin-right: 1%;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-decoration: none;

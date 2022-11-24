@@ -1,0 +1,19 @@
+.background{
+    background-image: url('../Fotos/PASTO.jpg');
+    display: inline-block;
+    width: 100%;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.detailsContainer{
+    background-color: #4ca387;
+    opacity: 90%;
+    margin-top: 100px;
+    
+}
+
+ 

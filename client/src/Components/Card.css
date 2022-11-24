@@ -1,14 +1,20 @@
+.superContainer{
+  margin-left: 30px;
+}
+
 .dogsContainer{
     margin: 15px;
+    margin-right: 20px;
+    
 }
 
 .dogsCard{
     border-radius: 15px;
-    background: antiquewhite;
-    border-bottom: 4px solid gray;
-    height: 400px;
-    width: 200px;
-    margin-left: 20%;
+    background: #4ca387;
+    border-bottom: 4px solid #428c74;
+    height: 350px;
+    width: 220px;
+    margin-left: 18%;
     margin-top: 20px;
     display: flex;
     justify-content: center;
@@ -16,6 +22,7 @@
     text-align: center;
     flex-direction: column;
     transition: all 0.4s ease;
+    box-shadow: 0 0 10px 0 rgb(24, 24, 24);
 }
 
 .cardName{
@@ -49,10 +56,9 @@ img{
 }
 
 .cardWeight{
-    color: black;
-    background-color: antiquewhite;
+    color: #263849;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     text-align: center;
     word-wrap: break-word;
 }
@@ -60,12 +66,12 @@ img{
 a{
     text-decoration: none;
     width: 100%;
-    color: azure;
-    font-family: 'Courier New', Courier, monospace;
+    color: #2e3540;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 a:hover {
-    color:  #53273d;
+    color:  azure; 
     animation: rotate 0.7s ease-in-out both;
 }
 @keyframes rotate

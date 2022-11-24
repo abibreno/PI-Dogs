@@ -8,7 +8,7 @@ const { Temperament } = require('../db')
 router.get('/temperaments', async (req, res) => {
   try {
     const temperamentsFromDB = await Temperament.findAll();
-    if(temperamentsFromDB >= 1) res.send(temperamentsFromDB)
+    if(temperamentsFromDB >= 1) res.json(temperamentsFromDB)
   
     const apiInfo = await axios.get(api)
     let everyTemperament =  apiInfo.data?.map(dog => dog.temperament ? dog.temperament : null).map(dog => dog && dog.split(', ')); // 

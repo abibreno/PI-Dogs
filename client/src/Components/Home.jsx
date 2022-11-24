@@ -7,6 +7,7 @@ import Card from './Card'
 import './Home.css'
 import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
+import loading from "../Fotos/loading.gif";
 
 
 
@@ -35,7 +36,7 @@ useEffect(() => { //aca uso el useEffect para que cuando se renderice la pagina 
 
 useEffect(() => {
     dispatch(getDogs()) //aca uso la accion para traer los perros
-    dispatch(filterByTemperaments())  //aca uso la accion para traer los temperamentos
+    
     dispatch(getTemperaments())  //aca uso la accion para traer los temperamentos
 },[dispatch]) //aca le paso el dispatch para que se ejecute cuando cambie
 
@@ -68,6 +69,7 @@ function handleFilterByBreed (e){
 }
 
     return(
+     
         
         <div className="homeDiv">
             <div className="welcome">
@@ -110,6 +112,7 @@ function handleFilterByBreed (e){
             <option value = "all">Breeds</option>
             <option value = "created">Created Breeds</option>
             <option value = "api"> Api Breeds</option>
+            
         </select>
         </div>
 
@@ -121,9 +124,9 @@ function handleFilterByBreed (e){
             />
             </div>
 
-            {/* <img className='loadingGif' src={loading} alt="Loading..."/> */}
+            
             {currentDogs.length === 0 ?
-            <div>ALGO</div> :
+            <div>{<img className='loadingGif' src={loading} alt="Loading..."/>}</div> :
             <div className="CardContainer">
                 {currentDogs?.map((e) => {
                     return (
@@ -132,9 +135,9 @@ function handleFilterByBreed (e){
                         id={ e.id }
                         name = { e.name }
                         image = { e.image }
-                        temperament = { typeof e.temperament === 'string' ? e.temperament : e.temperament?.join(', ')}
-                        min_weight = {e.min_weight}
-                        max_weight = {e.max_weight}
+                        temperament = {e.temperaments?.join(', ')}
+                        weight = {e.weight}
+                        height = {e.height}
                             />                     
                     </div>
 )})}

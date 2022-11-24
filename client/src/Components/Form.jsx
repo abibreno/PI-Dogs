@@ -4,138 +4,130 @@ import {useDispatch, useSelector} from 'react-redux';
 import {createDog, getTemperaments} from '../Redux/dogsActions';
 import { Link, useHistory } from 'react-router-dom';
 import './Form.css';
+import axios from "axios";
 
-function validate (input) {
-    let errors = {};
-    if(!input.name){
-        errors.name = 'Name is required'
-    }
-    else if(!input.name.match(/^[A-Za-z\s]+$/)){ //.match: busca coincidencias en una cadena de texto.
-        errors.name = 'Only letters, please'
-    }
+const CreateDog = () => {
+const tempForm = useSelector((state) => state.temperaments);
+const dispatch = useDispatch();
+const [create, setCreate] = useState(false);
+const initialState = {
+  name: "",
+  heightmin: "",
+  heightmax: "",
+  weightmin: "",
+  weightmax: "",
+  life_spanmin: "",
+  life_spanmax: "",
+  temperaments: [],
+  image: "",
+};
+const [errors, setErrors] = useState({ form: "complete form" });
+const [completed, setCompleted] = useState(initialState);
 
-    if(!input.life_span){
-        errors.life_span = 'Life span is required'
-    }
-    else if(input.life_span < 1 || input.life_span > 25){
-        errors.life_span = 'Between 1-25 years';
-    }
-
-    if(!input.min_height){
-        errors.min_height = 'Min height is required'
-    }
-    else if(input.min_height < 10){
-        errors.min_height = 'Must be more than 10cm'
-    }
-
-    if(!input.max_height){
-        errors.max_height = 'Max height is required'
-    }
-    else if(input.max_height > 80){
-        errors.max_height = 'Must be less than 80cm'
-    }
-
-    if(!input.min_weight){
-        errors.min_weight = 'Min weight is required'
-    }
-    else if(input.min_weight < 1){
-        errors.min_height = 'Must be more than 1kg'
-    }
-
-    if(!input.max_weight){
-        errors.max_weight = 'Max weight is required'
-    }
-    else if(input.max_height > 100){
-        errors.max_weight = 'Must be less than 100kg'
-    }
-    else if(Number(input.min_height) > Number(input.max_height)){
-        errors.max_height = 'Must be higher than min height'
-    }
-    else if(Number(input.min_weight) > Number(input.max_weight)){
-        errors.max_weight = 'Must be heavier than min weight'
-    }
-    return errors;
+const finalForm = {
+  name: completed.name,
+  height: `${completed.heightmin} - ${completed.heightmax}`,
+  weight: `${completed.weightmin} - ${completed.weightmax}`,
+  life_span: `${completed.life_spanmin} - ${completed.life_spanmax} years`,
+  temperament: completed.temperaments.map((item) => item.id),
+  image: completed.image,
 };
 
-export default function Form(){
-    const dispatch = useDispatch();
-    const history = useHistory();
-    
-    const [errors, setErrors] = useState({});//guardo los errores.
-    const temperaments = useSelector((state) => state.temperaments);
+useEffect(() => {
+  if (tempForm.length === 0) return dispatch(getTemperaments());
+}, [tempForm.length, dispatch]);
 
-    useEffect(() => {
-        dispatch(getTemperaments());
-    },[dispatch]);
+const validate = (completed) => {
+  let errors = {};
+  if (!completed.name) {
+    errors.name = "Dog Name is required";
+  } 
+   if (completed.name.length < 3) {
+    errors.name = "Dog Name must have at least 3 characters";
+  }
+  if (!completed.heightmin || !completed.heightmax) {
+    errors.height = "Dog height is required";
+  } 
+   if (parseInt(completed.heightmax) <= parseInt(completed.heightmin)) {
+    errors.height = "Height-max must be highter than height-min";
+  }
+  if (!completed.weightmin || !completed.weightmax) {
+    errors.weight = "Dog height is required";
+  } 
+   if (parseInt(completed.weightmax) <= parseInt(completed.weightmin)) {
+    errors.weight = "Weight-max must be highter than height-min";
+  }
+  if (!completed.life_spanmin || !completed.life_spanmax) {
+    errors.life_span = "Dog life span is required";
+  } 
+   if (parseInt(completed.life_spanmax) <= parseInt(completed.life_spanmin)) {
+    errors.life_span = "Life span-max must be highter than life span-min";
+  }
+  if (completed.temperaments.length === 0) {
+    errors.temperaments = "Temperaments are required";
+  }
+  if (completed.life_spanmax < 0 || completed.life_spanmin < 0) {
+    errors.life_span = "Value must be highter than 0";
+  }
+  if (completed.weightmax < 0 || completed.weightmin < 0) {
+    errors.weight = "Value must be highter than 0";
+  }
+  if (completed.heightmax < 0 || completed.heightmin < 0) {
+    errors.height = "Value must be highter than 0";
+  }
 
-    const [input, setInput] = useState({ //Para guardar los datos
-        name: "",
-        life_span: "",
-        min_height: "",
-        max_height: "",
-        min_weight: "",
-        max_weight: "",
-        image: "",
-        temperament: [],
-    });
+  return errors;
+};
 
-    function handleChange(e) {
-        setInput({
-            ...input,
-            [e.target.name] : e.target.value //guarda el nuevo valor.
-        })
-        setErrors(validate({
-            ...input,
-            [e.target.name] : e.target.value //muestra el error.
-        }))
-    }
+const handleChange = (e) => {
+  setCompleted({ ...completed, [e.target.name]: e.target.value });
+  setErrors(
+    validate({
+      ...completed,
+      [e.target.name]: e.target.value,
+    })
+  );
+};
 
-    function handleTemperaments(e) {
-        e.preventDefault(); //no se recargue la pagina.
-        setInput({
-            ...input,
-            temperament: [
-                ...input.temperament, e.target.value //guarda valor nuevo.
-            ]
-        })
-        setErrors(validate({
-            ...input,
-            temperament: [
-                ...input.temperament, e.target.value
-            ]
-        }))
-    }
+const handleTemperaments = (e) => {
+  if (
+    !completed.temperaments.includes(
+      tempForm.find((item) => item.name === e.target.value)
+    )
+  ) {
+    completed.temperaments.push(
+      tempForm.find((item) => item.name === e.target.value)
+    );
+  }
+  setErrors(
+    validate({
+      ...completed,
+      [e.target.name]: e.target.value,
+    })
+  );
+};
 
-    function handleSubmit(e) {
-        if(
-            input.name && input.temperament
-        ){
-            e.preventDefault();
-            dispatch(createDog(input));
-            alert("Dog created succesfully");
-            setInput({
-                name: "",
-                life_span: "",
-                min_height: "",
-                max_height: "",
-                min_weight: "",
-                max_weight: "",
-                image: "",
-                temperament: [],
-            })
-            history.push("/home");
-        }else{
-            alert("Please fill all the fields");
-        }
-    }
+const handleSubmit = (e) => {
+  e.preventDefault();
+  setErrors(
+    validate({
+      ...completed,
+      [e.target.name]: e.target.value,
+    })
+  );
+  if (Object.values(errors).length === 0) {
+    axios.post('http://localhost:3001/dogs', finalForm);
+    setCreate(!create);
+    setCompleted(initialState);
+  }
+};
 
-    function handleDelete(e){
-        e.preventDefault();
-        setInput((input)=>({
-            ...input,
-            temperament: input.temperament.filter((t) => t !== e.target.value)
-        }))
-    }
+function handleDelete(name) {
+  setCompleted({
+    ...completed,
+    temperaments: completed.temperaments.filter((item) => item.name !== name),
+  });
+}
 
     return (
         <div className="formCss">
@@ -144,43 +136,47 @@ export default function Form(){
             </div>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <label> Name: </label>
-                <input type="text" name="name" value={input.name} onChange = {(e) => handleChange(e)} /> 
+                <input type="text" name="name" value={completed.name} onChange = {(e) => handleChange(e)} /> 
                 {errors.name && <p>{errors.name}</p>}
 
 
-                <label> Life span: </label>
-                <input type='number' min='1' max='25' name='life_span' value={input.life_span} onChange = {(e) => handleChange(e)} />
-                {errors.life_span && <p>{errors.life_span}</p>}
+                <label> Life span min: </label>
+                <input type='number' min='1' max='25' name='life_spanmin' value={completed.life_spanmin} onChange = {(e) => handleChange(e)} />
+                {errors.life_spanmin && <p>{errors.life_spanmin}</p>}
+
+                <label> Life span max: </label>
+                <input type='number' min='1' max='25' name='life_spanmax' value={completed.life_spanmax} onChange = {(e) => handleChange(e)} />
+                {errors.life_spanmax && <p>{errors.life_spanmax}</p>}
 
 
                 <label> Min weight: </label>
-                <input type='number' name='min_weight' min='1' value={input.min_weight} onChange = {(e) => handleChange(e)} />
-                {errors.min_weight && <p>{errors.min_weight}</p>}
+                <input type='number' name='weightmin' min='1' value={completed.weightmin} onChange = {(e) => handleChange(e)} />
+                {errors.weightmin && <p>{errors.weightmin}</p>}
 
 
                 <label> Max weight: </label>
-                <input type='number' name='max_weight' max='100' value={input.max_weight} onChange = {(e) => handleChange(e)} />
-                {errors.max_weight && <p>{errors.max_weight}</p>}
+                <input type='number' name='weightmax' max='100' value={completed.weightmax} onChange = {(e) => handleChange(e)} />
+                {errors.weightmax && <p>{errors.weightmax}</p>}
 
 
                 <label> Min height: </label>
-                <input type='number' name='min_height' min='10' value={input.min_height} onChange = {(e) => handleChange(e)} 
+                <input type='number' name='heightmin' min='10' value={completed.heightmin} onChange = {(e) => handleChange(e)} 
                  />
-                {errors.min_height && <p>{errors.min_height}</p>}
+                {errors.heightmin && <p>{errors.heightmin}</p>}
                 
 
                 <label> Max height: </label>
-                <input type='number' name='max_height' max='80' value={input.max_height} onChange = {(e) => handleChange(e)} />
-                {errors.max_height && <p>{errors.max_height}</p>}
+                <input type='number' name='heightmax' max='80' value={completed.heightmax} onChange = {(e) => handleChange(e)} />
+                {errors.heightmax && <p>{errors.heightmax}</p>}
 
 
                 <label> Image: </label>
-                <input type='url' name='image' value={input.image} onChange = {(e) => handleChange(e)} />
+                <input type='url' name='image' value={completed.image} onChange = {(e) => handleChange(e)} />
 
                 <div>
             <label> Temperaments: </label>
-            <select value={input.temperament} onChange={(e) => handleTemperaments(e)}>
-                {temperaments.map((el) => (
+            <select value={completed.temperaments} onChange={(e) => handleTemperaments(e)}>
+                {tempForm?.map((el) => (
                     <option key={el.id} value={el.name}>
                         {el.name}
                     </option>
@@ -190,16 +186,18 @@ export default function Form(){
                 <Link to="/home">
               <button className='goBackButton'><p> Back </p></button>
                 </Link>
+                <button className='submitButton' type="submit"><p> Submit </p></button>
                 </form>
-                <button className='submitButton' type="submit" onClick={(e) => handleSubmit(e)}><p> Submit </p></button>
                 <div className="temperaments"> 
-                {input.temperament.map((t) => ( 
-                    <div className="temperament">
-                        <p>{t}</p>
-                        <button className="deleteButton" value={t} onClick={(e) => handleDelete(e)}> x </button>
-                        </div>
-                ))}
+                {completed.temperaments?.map((item) => (
+              <div key={item.id}>
+                {item.name}{" "}
+                <button onClick={() => handleDelete(item.name)}>x</button>
+              </div>
+            ))}
                 </div>
             </div> 
     )
 }
+
+export default CreateDog;

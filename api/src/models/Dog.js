@@ -4,44 +4,34 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('dogs', {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    id: {
-      type: DataTypes.INTEGER,
-      // defaultValue: DataTypes.UUIDV4,
+    height: {
+      type: DataTypes.STRING,
       allowNull: false,
-      primaryKey: true,
     },
-    life_span: {
+    weight: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+      life_span:{
       type: DataTypes.STRING,
       allowNull: true
     },
-    image: {
-      type: DataTypes.TEXT,
-      allowNull: true,
+    image:{
+      type: DataTypes.STRING,
+      allowNull:true
     },
-    min_weight: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    max_weight: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    min_height: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    max_height: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    createdInDataBase: {
-    type: DataTypes.BOOLEAN, //esto es para saber si el perro fue creado en la base de datos o no
-    allowNull: false,
-    defaultValue: true,
-    },
+
+     }, {timestamps: true,
+      createdAt: 'creado',
+      updatedAt: false
   });
 };

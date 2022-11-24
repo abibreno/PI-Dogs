@@ -5,6 +5,7 @@ export default function Card({ id, image, name, temperament, min_weight, max_wei
 
 
  return(
+    <div className='superContainer'>
     <div className="dogsContainer">
     <div className="dogsCard">
     <div className="dogsImage">
@@ -21,10 +22,11 @@ export default function Card({ id, image, name, temperament, min_weight, max_wei
             </Link>
     <p className="cardTemperaments"> {temperament} </p>
 
-    <p className="cardWeight"> Min Weight: {min_weight} - Max weight: {max_weight}  </p>  
+    <p className="cardWeight"> Min Weight: {min_weight} - Max weight: {max_weight}  </p> 
 
 
 
+    </div>
     </div>
     </div>
  )

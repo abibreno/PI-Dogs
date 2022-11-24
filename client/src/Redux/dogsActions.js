@@ -37,6 +37,7 @@ export function getTemperaments (){
 };
 
 export function getDogsDetails(id) {
+    console.log(id)
     return async function (dispatch) {
      try{ 
         var json = await axios.get(`http://localhost:3001/dogs/${id}`)
@@ -72,17 +73,24 @@ export function orderBy (payload) {
         }
 }
 
-export function filterByTemperaments (payload) {
-    return {
-        type: FILTER_BY_TEMPERAMENTS,
-        payload //payload es un array de temperamentos
-    }
-}
+// export function filterByTemperaments (payload) {
+//     return {
+//         type: FILTER_BY_TEMPERAMENTS,
+//         payload //payload es un array de temperamentos
+//     }
+// }
+
+export function filterByTemperaments(payload) {
+    return function (dispatch) {
+      console.log(payload)
+      dispatch({ type: FILTER_BY_TEMPERAMENTS, payload });
+    };
+  }
 
 export function filterByBreed (payload) {
-    return {
+    return { 
         type: FILTER_BY_BREED,
-        payload
+        payload,
     }
 }
 
