@@ -16,7 +16,7 @@ export default function SearchBar(){
 
     function handleSubmit(e){
         e.preventDefault()
-        if(!name.length) { //si no hay nada en el input
+        if(!name.length || name.charAt(0) === " ") { //si no hay nada en el input o un espacio.
             return alert('Please insert a valid name.') //no hace nada
     } else {
         dispatch(getDogByBreed(name)) //si hay algo en el input, hace el dispatch con el valor del input

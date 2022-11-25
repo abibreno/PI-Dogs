@@ -20,7 +20,7 @@ export default function Card({ id, image, name, temperament, weight, }){
     <Link to ={`/dogs/${id}`} > 
     <h2 className="cardName"> {name} </h2>
             </Link>
-    <p className="cardTemperaments"> {temperament} </p>
+    <p className="cardTemperaments"> Temperaments: {temperament} </p>
 
     <p className="cardWeight"> Weight: {weight}  </p> 
 
