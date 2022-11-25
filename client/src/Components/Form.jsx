@@ -130,52 +130,55 @@ function handleDelete(name) {
 }
 
     return (
+      <div className='backgroundForm'>
+        <div>
         <div className="formCss">
             <div className="formTitle">
                 <h1>Create your own dog!</h1>
             </div>
             <form onSubmit={(e) => handleSubmit(e)}>
+              
                 <label> Name: </label>
                 <input type="text" name="name" value={completed.name} onChange = {(e) => handleChange(e)} /> 
                 {errors.name && <p>{errors.name}</p>}
-
-
-                <label> Life span min: </label>
-                <input type='number' min='1' max='25' name='life_spanmin' value={completed.life_spanmin} onChange = {(e) => handleChange(e)} />
+                
+              <div className="lifeSpan">
+                <p>
+                <label > Life span: </label>
+                <input className="inputLife" type='number' min='1' max='25' name='life_spanmin' placeholder="Min" value={completed.life_spanmin} onChange = {(e) => handleChange(e)} />
                 {errors.life_spanmin && <p>{errors.life_spanmin}</p>}
-
-                <label> Life span max: </label>
-                <input type='number' min='1' max='25' name='life_spanmax' value={completed.life_spanmax} onChange = {(e) => handleChange(e)} />
+                
+                <input className="inputLife" type='number' min='1' max='25' name='life_spanmax' placeholder="Max" value={completed.life_spanmax} onChange = {(e) => handleChange(e)} />
                 {errors.life_spanmax && <p>{errors.life_spanmax}</p>}
-
-
-                <label> Min weight: </label>
-                <input type='number' name='weightmin' min='1' value={completed.weightmin} onChange = {(e) => handleChange(e)} />
+                </p>
+              </div>
+                
+                <p>
+                <label> Weight: </label>
+                <input type='number' name='weightmin' min='1' placeholder="Min" value={completed.weightmin} onChange = {(e) => handleChange(e)} />
                 {errors.weightmin && <p>{errors.weightmin}</p>}
 
-
-                <label> Max weight: </label>
-                <input type='number' name='weightmax' max='100' value={completed.weightmax} onChange = {(e) => handleChange(e)} />
+                <input type='number' name='weightmax' max='100' placeholder="Max" value={completed.weightmax} onChange = {(e) => handleChange(e)} />
                 {errors.weightmax && <p>{errors.weightmax}</p>}
+                </p>
 
-
-                <label> Min height: </label>
-                <input type='number' name='heightmin' min='10' value={completed.heightmin} onChange = {(e) => handleChange(e)} 
+                <p>
+                <label> Height: </label>
+                <input type='number' name='heightmin' min='10' placeholder="Min" value={completed.heightmin} onChange = {(e) => handleChange(e)} 
                  />
                 {errors.heightmin && <p>{errors.heightmin}</p>}
                 
-
-                <label> Max height: </label>
-                <input type='number' name='heightmax' max='80' value={completed.heightmax} onChange = {(e) => handleChange(e)} />
+                <input type='number' name='heightmax' max='80' placeholder="Max" value={completed.heightmax} onChange = {(e) => handleChange(e)} />
                 {errors.heightmax && <p>{errors.heightmax}</p>}
+                </p>
 
 
                 <label> Image: </label>
-                <input type='url' name='image' value={completed.image} onChange = {(e) => handleChange(e)} />
+                <input className="inputImg" type='url' name='image' value={completed.image} onChange = {(e) => handleChange(e)} />
 
                 <div>
             <label> Temperaments: </label>
-            <select value={completed.temperaments} onChange={(e) => handleTemperaments(e)}>
+            <select className="inputTemp" value={completed.temperaments} onChange={(e) => handleTemperaments(e)}>
                 {tempForm?.map((el) => (
                     <option key={el.id} value={el.name}>
                         {el.name}
@@ -188,6 +191,7 @@ function handleDelete(name) {
                 </Link>
                 <button className='submitButton' type="submit"><p> Submit </p></button>
                 </form>
+                </div>
                 <div className="temperaments"> 
                 {completed.temperaments?.map((item) => (
               <div key={item.id}>
@@ -195,8 +199,9 @@ function handleDelete(name) {
                 <button onClick={() => handleDelete(item.name)}>x</button>
               </div>
             ))}
-                </div>
-            </div> 
+            </div>
+          </div>
+        </div> 
     )
 }
 
