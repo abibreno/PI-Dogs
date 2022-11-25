@@ -47,8 +47,7 @@ img{
 }
 
 .cardTemperaments{
-    color: black;
-    background-color: antiquewhite;
+    color: #252931;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 15px;
     text-align: center;
@@ -66,12 +65,12 @@ img{
 a{
     text-decoration: none;
     width: 100%;
-    color: #2e3540;
+    color: azure;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 a:hover {
-    color:  azure; 
+    color:  #2e3540; 
     animation: rotate 0.7s ease-in-out both;
 }
 @keyframes rotate

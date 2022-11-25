@@ -1,7 +1,7 @@
 import './Card.css'
 import React from "react";
 import { Link } from "react-router-dom";
-export default function Card({ id, image, name, temperament, min_weight, max_weight }){
+export default function Card({ id, image, name, temperament, weight, }){
 
 
  return(
@@ -22,7 +22,7 @@ export default function Card({ id, image, name, temperament, min_weight, max_wei
             </Link>
     <p className="cardTemperaments"> {temperament} </p>
 
-    <p className="cardWeight"> Min Weight: {min_weight} - Max weight: {max_weight}  </p> 
+    <p className="cardWeight"> Weight: {weight}  </p> 
 
 
 
