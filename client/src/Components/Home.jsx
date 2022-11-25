@@ -35,10 +35,13 @@ useEffect(() => { //aca uso el useEffect para que cuando se renderice la pagina 
 }, [allDogs]) //aca le paso el estado para que se ejecute cuando cambie
 
 useEffect(() => {
+    if(allDogs.length === 0){
     dispatch(getDogs()) //aca uso la accion para traer los perros
-    
-    dispatch(getTemperaments())  //aca uso la accion para traer los temperamentos
-},[dispatch]) //aca le paso el dispatch para que se ejecute cuando cambie
+    dispatch(getTemperaments())//aca uso la accion para traer los temperamentos
+}  
+},[dispatch, allDogs.length]) //aca le paso el dispatch para que se ejecute cuando cambie
+
+
 
 
 

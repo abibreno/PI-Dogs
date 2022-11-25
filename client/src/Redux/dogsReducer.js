@@ -124,26 +124,20 @@ case FILTER_BY_TEMPERAMENTS:
 
 
 case FILTER_BY_BREED:
-    if(action.payload === "api"){
-        let data = state.filtered.filter((item) => typeof item.id === "number");
-        console.log(data);
-        return{
-            ...state,
-            dogs: data
+    if(action.payload === 'created'){
+        if( state.filtered.filter((item)=> (typeof item.id) === 'string').length === 0 ){
+           return alert('no dog')
         }
-    }
-    if(action.payload === "created"){
-        return{
-            ...state,
-            dogs: state.filtered.filter((item) => typeof item.id === "string")
+        return {
+            ...state, 
+            dogs: state.filtered?.filter((item)=> (typeof item.id) === 'string')}
         }
-    }
-    else{
-        return{
-            ...state,
-            dogs: state.filtered
-        }
-    }
+
+    else {
+        return {
+            ...state, 
+            dogs: state.filtered.filter((item)=> (typeof item.id) === 'number')}
+        } ;
 //   const allBreeds = state.filtered
 //   const breedsFilter = action.payload === 'created' ? 
 //     allBreeds.filter((e) => e.createdInDataBase) 
