@@ -186,12 +186,7 @@ function handleDelete(name) {
                 ))}
             </select>
               </div>
-                <Link to="/home">
-              <button className='goBackButton'><p> Back </p></button>
-                </Link>
-                <button className='submitButton' type="submit"><p> Submit </p></button>
-                </form>
-                </div>
+                
                 <div className="temperaments"> 
                 {completed.temperaments?.map((item) => (
               <div key={item.id}>
@@ -200,6 +195,13 @@ function handleDelete(name) {
               </div>
             ))}
             </div>
+            <Link to="/home">
+              <button className='goBackButton'><p> Back </p></button>
+                </Link>
+                <button className='submitButton' type="submit"><p> Submit </p></button>
+                </form>
+                </div>
+                
           </div>
         </div> 
     )

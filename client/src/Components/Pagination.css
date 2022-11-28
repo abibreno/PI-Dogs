@@ -1,32 +1,21 @@
-.Pagination{
+.btnPag {
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    justify-content:space-evenly;
+    margin: 10px;
+    width: 80%;
+    margin-left: 10%;
+  }
 
-.pagCss{
-    margin-right: 15%;
-}
-
-ul{
-    display: flex;
-    flex-direction: row;
-}
-
-li{
-    list-style: none;
-    margin: 1%;
-    width: 5%;
-}
-
-.buttonCss{
-    cursor: pointer;
-    text-decoration: none;
-    border: none;
-    background: none;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.buttonCss:hover{
+  .btnPag button {
+    border-radius: 15px;
     background-color: azure;
-}
+    color: #263849;
+    border-radius: .3em;
+    border: 1px solid;
+  }
+
+  .btnPag button:hover {
+    color: azure;
+    background-color: #35bcbf;
+
+  }

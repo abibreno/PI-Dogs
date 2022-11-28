@@ -124,6 +124,7 @@ function handleFilterByBreed (e){
                 dogsPerPage = {dogsPerPage} 
                 allDogs = {allDogs.length} 
                 pagination = {pagination} 
+                currentPage = {currentPage}
             />
             </div>
 

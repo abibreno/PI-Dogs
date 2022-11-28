@@ -6,8 +6,9 @@
 }
 
 .homeDiv{
-    background-image: url('../Fotos/PRUEBA.jpg');
     display: inline-block;
+    background-size: cover;
+    
 }
 
 .welcome{

@@ -78,10 +78,10 @@ case GET_BY_BREED:
     return {
         ...state,
         dogs: state.dogs.sort (function (a, b) {
-         if (a.max_weight > b.max_weight) {
+         if (a.weight > b.weight) {
              return 1;
          }
-         if (b.max_weight > a.max_weight) {
+         if (b.weight > a.weight) {
              return -1;
          }
          return 0                        
@@ -92,10 +92,10 @@ if(action.payload === "desc"){
     return {
         ...state,
         dogs: state.dogs.sort (function (a, b) {
-         if (a.max_weight > b.max_weight) {
+         if (a.weight > b.weight) {
              return -1;
          }
-         if (b.max_weight> a.max_weight) {
+         if (b.weight> a.weight) {
              return 1
          }
          return 0;
@@ -121,7 +121,6 @@ case FILTER_BY_TEMPERAMENTS:
 //                          ...state,
 //                      filtered: state.dogs.filter(el=> el.temperaments? el.temperaments.includes(action.payload): "hola" ) 
 //                        }
-
 
 case FILTER_BY_BREED:
     if(action.payload === 'created'){

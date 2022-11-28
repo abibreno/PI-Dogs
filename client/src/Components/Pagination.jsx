@@ -13,14 +13,21 @@ export default function Pagination({dogsPerPage, currentPage, allDogs, paginatio
     }
  
     return(
-        <nav className="pagCss">
-            <ul> 
-                {pageNumbers?.map(number => ( 
-                    <li key={number}> 
-                         <button className="buttonCss" onClick = {() => pagination(number)}>{number}</button>
-                    </li>
-                    ))}
-            </ul>
+        <nav className="btnPag">
+         <button
+        onClick={() => 
+          pagination(currentPage === 1 ? pageNumbers.length : currentPage -1)}>
+« </button>   
+            
+            {
+        pageNumbers && pageNumbers.map(number => (
+          <button key = {number} onClick = {() => pagination(number)}>
+            {currentPage === number ? <b>{number}</b> : number}
+          </button>
+        ))
+      }
+            <button onClick={() => pagination(currentPage === 0 ? currentPage : currentPage + 1)}>
+» </button>
             </nav>
     )
 }

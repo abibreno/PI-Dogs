@@ -29,7 +29,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull:true
     },
-
      }, {timestamps: true,
       createdAt: 'creado',
       updatedAt: false
