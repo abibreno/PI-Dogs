@@ -121,7 +121,7 @@ const CreateDog = () => {
       setCreate(!create);
       setCompleted(initialState);
       alert("Dog created successfully"); //AGREGADO JUNTO CON CORRECCION DE ERRORES.
-      history.push("/home");//AGREGADO
+      history.push("/home"); //AGREGADO
     } else {
       alert("Please fill all the fields");
     }
@@ -200,7 +200,6 @@ const CreateDog = () => {
                 value={completed.weightmax}
                 onChange={(e) => handleChange(e)}
               />
-              {/* {errors.weightmax && <p>{errors.weightmax}</p>} */}
             </p>
             <p>{errors.weight ? <label>{errors.weight}</label> : null}</p>
 
@@ -248,6 +247,11 @@ const CreateDog = () => {
                   </option>
                 ))}
               </select>
+              <p>
+                {errors.temperaments ? (
+                  <label>{errors.temperaments}</label>
+                ) : null}
+              </p>
             </div>
 
             <div className="temperaments">
