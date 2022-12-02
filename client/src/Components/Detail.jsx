@@ -3,15 +3,15 @@ import "./Detail.css";
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { getDogsDetails, clean } from "../Redux/dogsActions";
 import loading from "../Fotos/loading.gif";
 var img =
   "https://cdnb.artstation.com/p/assets/images/images/040/159/961/original/camila-xiao-pixel-art-doge-cute-dog-aniamted-loop-gif-barking-running-scared-and-happy-loop-gif-8bit-16bit.gif?1628036255";
 
 export default function Details() {
-  const dispatch = useDispatch();
-  let dogsDetail = useSelector((state) => state.dogsDetails);
+  const dispatch = useDispatch(); //para poder usar las acciones
+  let dogsDetail = useSelector((state) => state.dogsDetails); // para poder usar el estado
   const { id } = useParams();
   console.log(id);
 
@@ -20,9 +20,12 @@ export default function Details() {
     dispatch(clean());
   }, [dispatch, id]);
 
+
+
   return (
     <div className="background">
       <div className="detailsCss">
+        
         {dogsDetail.length === 0 ? (
           <img src={loading} alt="Loading..." />
         ) : (

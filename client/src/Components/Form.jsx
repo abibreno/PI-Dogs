@@ -1,14 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createDog, getTemperaments } from "../Redux/dogsActions";
+import { getTemperaments } from "../Redux/dogsActions";
 import { Link, useHistory } from "react-router-dom";
 import "./Form.css";
 import axios from "axios";
 
 const CreateDog = () => {
-  const tempForm = useSelector((state) => state.temperaments);
-  const dispatch = useDispatch();
+  const tempForm = useSelector((state) => state.temperaments); //para poder usar el estado.
+  const dispatch = useDispatch(); //para poder usar las acciones.
   const [create, setCreate] = useState(false);
   const initialState = {
     name: "",

@@ -7,7 +7,7 @@ import {
   orderBy,
   filterByTemperaments,
   getTemperaments,
-  filterByBreed,
+  filterByBreed, 
 } from "../Redux/dogsActions";
 import Card from "./Card";
 import "./Home.css";
@@ -32,7 +32,7 @@ export default function Home() {
   const [temperament, setTemperament] = useState("All"); //aca lo uso para filtrar por temperamento
 
   const pagination = (currentPageNumber) => {
-    //esto es para que cuando cambie de pagina se actualice
+  
     setCurrentPage(currentPageNumber); //esto es para que cuando cambie de pagina se actualice
   };
 
@@ -76,6 +76,10 @@ export default function Home() {
     setCurrentPage(1);
     setBreeds(e.target.value);
   }
+
+
+
+  
 
   return (
     <div className="homeDiv">

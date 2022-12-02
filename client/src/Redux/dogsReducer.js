@@ -8,6 +8,7 @@ import {
   FILTER_BY_BREED,
   CREATE_DOG,
   CLEAN,
+  DELETE_DOG,
 } from "./dogsActions";
 
 const initialState = {
@@ -47,6 +48,12 @@ export default function reducer(state = initialState, action) {
         ...state,
         dogsDetails: [],
       };
+    
+    case DELETE_DOG:
+      return{
+        ...state,
+        filtered: state.filtered.filter((e) => e.id !== action.payload)
+      }
 
     case ORDER_BY:
       if (action.payload === "default") {
@@ -131,12 +138,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         dogs: temperamentFilter,
       };
-    // case FILTER_BY_TEMPERAMENTS:
-    //                       return{
-
-    //                          ...state,
-    //                      filtered: state.dogs.filter(el=> el.temperaments? el.temperaments.includes(action.payload): "hola" )
-    //                        }
+   
 
     case FILTER_BY_BREED:
       if (action.payload === "created") {
@@ -156,18 +158,7 @@ export default function reducer(state = initialState, action) {
           dogs: state.filtered.filter((item) => typeof item.id === "number"),
         };
       }
-    //   const allBreeds = state.filtered
-    //   const breedsFilter = action.payload === 'created' ?
-    //     allBreeds.filter((e) => e.createdInDataBase)
-    //     : action.payload === 'api' ?
-    //     allBreeds.filter((e) => !e.createdInDataBase)
-    //     : action.payload === 'all' &&
-    //     allBreeds // si el payload es igual a all, entonces que me devuelva todos los perros, sino que me devuelva los perros que incluyan el temperament que le estoy pasando por el payload
-    //           return {
-    //              ...state,
-    //                dogs: breedsFilter,
-
-    // }
+   
     case CREATE_DOG:
       return {
         ...state, // retorna el estado inicial

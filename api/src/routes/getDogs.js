@@ -1,9 +1,6 @@
 const { Router } = require("express");
 const router = Router();
 const { allInfo } = require("./controllers/DogsInfo");
-const { getDogs } = require("./controllers/DogsInfo");
-const { Dogs, Temperament } = require("../db");
-const { Op } = require("sequelize");
 
 router.get("/dogs", async (req, res) => {
   if (req.query.name) {
@@ -21,12 +18,26 @@ router.get("/dogs", async (req, res) => {
   } else {
     try {
       let total = await allInfo();
-      // console.log(total)
       res.status(200).json(total);
     } catch (error) {
       res.status(400).json(error);
     }
   }
 });
+
+
+// router.delete('/dogs/:idRaza', async (req,res) => { 
+//   const idPerro = req.params.id;
+//  try{
+//        await Dog.destroy({
+//           where: {id: idPerro},
+//       })
+//       res.status(200).json("delete");
+//   } catch(error){
+//       res.send(error);
+//    }
+// })
+
+
 
 module.exports = router;

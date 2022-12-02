@@ -13,7 +13,6 @@ export default function Pagination({
     pageNumbers.push(i);
   }
   if (currentPage === pageNumbers.length + 1) {
-    //
     pagination(1);
   }
 

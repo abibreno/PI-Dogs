@@ -1,7 +1,13 @@
 import "./Card.css";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {deleteDog} from "../Redux/dogsActions";
 export default function Card({ id, image, name, temperament, weight }) {
+
+
+const dispatch = useDispatch();
+
   return (
     <div className="superContainer">
       <div className="dogsContainer">
@@ -19,6 +25,8 @@ export default function Card({ id, image, name, temperament, weight }) {
           <p className="cardTemperaments"> Temperaments: {temperament} </p>
 
           <p className="cardWeight"> Weight: {weight} </p>
+
+          <button className="btnDelete"  onClick={() => dispatch(deleteDog(id))}>Delete Dog</button>
         </div>
       </div>
     </div>

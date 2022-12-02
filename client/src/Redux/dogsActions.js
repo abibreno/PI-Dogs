@@ -10,6 +10,7 @@ export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
 export const FILTER_BY_BREED = "FILTER_BY_BREED";
 export const CREATE_DOG = "CREATE_DOG";
 export const CLEAN = "CLEAN";
+export const DELETE_DOG = "DELETE_DOG";
 
 export function getDogs() {
   return async function (dispatch) {
@@ -71,13 +72,6 @@ export function orderBy(payload) {
   };
 }
 
-// export function filterByTemperaments (payload) {
-//     return {
-//         type: FILTER_BY_TEMPERAMENTS,
-//         payload //payload es un array de temperamentos
-//     }
-// }
-
 export function filterByTemperaments(payload) {
   return function (dispatch) {
     console.log(payload);
@@ -110,3 +104,18 @@ export function clean() {
     type: CLEAN,
   };
 }
+
+
+export function deleteDog(id){
+  return async function(dispatch){
+    try{
+      const perro = await axios.delete(`http://localhost:3001/dogs/${id}`)
+      return dispatch ({
+        type: DELETE_DOG,
+        payload: perro,
+      });
+    }catch(error){
+      alert(error)
+    }
+  };
+};
