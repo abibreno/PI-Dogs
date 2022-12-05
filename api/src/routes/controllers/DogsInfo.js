@@ -1,11 +1,11 @@
 const axios = require("axios");
 const { Dogs, Temperament } = require("../../db");
-const API = "https://api.thedogapi.com/v1/breeds";
 
 const getDogs = async () => {
   const conv = (data) => {
     if (data) return data.split(", ");
   };
+  
   try {
     const allDogs = await axios.get("https://api.thedogapi.com/v1/breeds");
 
@@ -13,11 +13,11 @@ const getDogs = async () => {
       return {
         id: d.id,
         name: d.name,
-        weight: d.weight.metric,
-        height: d.height.metric,
-        life_span: d.life_span,
-        temperaments: conv(d.temperament),
         image: d.image.url,
+        temperaments: conv(d.temperament),
+        height: d.height.metric,
+        weight: d.weight.metric,
+        life_span: d.life_span,
       };
     });
     return perros;

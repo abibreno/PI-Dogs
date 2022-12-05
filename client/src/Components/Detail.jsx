@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { getDogsDetails, clean } from "../Redux/dogsActions";
 import loading from "../Fotos/loading.gif";
-var img =
-  "https://cdnb.artstation.com/p/assets/images/images/040/159/961/original/camila-xiao-pixel-art-doge-cute-dog-aniamted-loop-gif-barking-running-scared-and-happy-loop-gif-8bit-16bit.gif?1628036255";
 
 export default function Details() {
   const dispatch = useDispatch(); //para poder usar las acciones
@@ -33,17 +31,9 @@ export default function Details() {
             <div>
               <h2> {dogsDetail.name} </h2>
               <div className="img">
-                <img src={dogsDetail.image ? dogsDetail.image : img} />
+                <img src={dogsDetail.image ? dogsDetail.image : loading} />
               </div>
-              <h3>
-                {dogsDetail.temperaments ? (
-                  <p>
-                    {" "}
-                    <b>Temperaments: </b>
-                    {dogsDetail.temperaments}.
-                  </p>
-                ) : null}
-              </h3>
+              {dogsDetail.temperaments ? <p> <b>Temperaments: </b> {dogsDetail.temperaments}.</p> : null}
               <div className="weightCss">
                 <p> Weight: {dogsDetail.weight} </p>
               </div>

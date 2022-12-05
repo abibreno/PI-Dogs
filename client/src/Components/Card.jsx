@@ -3,10 +3,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {deleteDog} from "../Redux/dogsActions";
+import {
+  getDogs,
+} from "../Redux/dogsActions";
+
 export default function Card({ id, image, name, temperament, weight }) {
 
 
 const dispatch = useDispatch();
+const handleClick = (id) => {
+  dispatch(deleteDog(id))
+  alert("Dog removed successfully")
+  dispatch(getDogs());
+}
+
 
   return (
     <div className="superContainer">
@@ -26,7 +36,7 @@ const dispatch = useDispatch();
 
           <p className="cardWeight"> Weight: {weight} </p>
 
-          <button className="btnDelete"  onClick={() => dispatch(deleteDog(id))}>Delete Dog</button>
+          <button className="btnDelete"  onClick={() => handleClick(id)} >Delete Dog</button>
         </div>
       </div>
     </div>

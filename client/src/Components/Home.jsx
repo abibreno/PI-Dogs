@@ -14,6 +14,7 @@ import "./Home.css";
 import Pagination from "./Pagination";
 import SearchBar from "./SearchBar";
 import loading from "../Fotos/loading.gif";
+import imagen from "../Fotos/favicon.png"
 
 export default function Home() {
   //esta funcion es la que se encarga de renderizar el componente Home
@@ -84,7 +85,9 @@ export default function Home() {
   return (
     <div className="homeDiv">
       <div className="welcome">
-        <h1> 🐕 Welcome 🐕 </h1>
+        <img src={imagen} alt="img" />
+        <h1> Welcome PI Dogs</h1>
+        <h2>Created by Abi Breno</h2>
       </div>
       <div>
         <button

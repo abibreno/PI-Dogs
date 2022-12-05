@@ -23,7 +23,7 @@ const CreateDog = () => {
   };
   const [errors, setErrors] = useState({ form: "complete form" });
   const [completed, setCompleted] = useState(initialState);
-  const history = useHistory(); //AGREGADO
+  const history = useHistory(); 
 
   const finalForm = {
     name: completed.name,
@@ -120,8 +120,8 @@ const CreateDog = () => {
       axios.post("http://localhost:3001/dogs", finalForm);
       setCreate(!create);
       setCompleted(initialState);
-      alert("Dog created successfully"); //AGREGADO JUNTO CON CORRECCION DE ERRORES.
-      history.push("/home"); //AGREGADO
+      alert("Dog created successfully"); 
+      history.push("/home"); 
     } else {
       alert("Please fill all the fields");
     }

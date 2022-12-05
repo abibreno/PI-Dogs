@@ -25,19 +25,4 @@ router.get("/dogs", async (req, res) => {
   }
 });
 
-
-// router.delete('/dogs/:idRaza', async (req,res) => { 
-//   const idPerro = req.params.id;
-//  try{
-//        await Dog.destroy({
-//           where: {id: idPerro},
-//       })
-//       res.status(200).json("delete");
-//   } catch(error){
-//       res.send(error);
-//    }
-// })
-
-
-
 module.exports = router;
