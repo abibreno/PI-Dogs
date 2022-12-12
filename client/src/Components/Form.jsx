@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTemperaments } from "../Redux/dogsActions";
+import { getTemperaments, getDogs } from "../Redux/dogsActions";
 import { Link, useHistory } from "react-router-dom";
 import "./Form.css";
 import axios from "axios";
@@ -122,6 +122,7 @@ const CreateDog = () => {
       setCompleted(initialState);
       alert("Dog created successfully"); 
       history.push("/home"); 
+      dispatch(getDogs());
     } else {
       alert("Please fill all the fields");
     }

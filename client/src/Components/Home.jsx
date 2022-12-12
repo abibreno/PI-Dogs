@@ -57,7 +57,7 @@ export default function Home() {
 
   function handleSort(e) {
     //aca uso la funcion para ordenar
-    e.preventDefault();
+    // e.preventDefault();
     dispatch(orderBy(e.target.value)); //aca uso la accion para ordenar
     setCurrentPage(1); //esto es para que cuando cambie de pagina se actualice
     setOrder(e.target.value); //setorder para que se actualice el estado

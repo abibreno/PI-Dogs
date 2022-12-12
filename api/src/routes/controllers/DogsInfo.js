@@ -2,6 +2,7 @@ const axios = require("axios");
 const { Dogs, Temperament } = require("../../db");
 
 const getDogs = async () => {
+
   const conv = (data) => {
     if (data) return data.split(", ");
   };
@@ -9,7 +10,7 @@ const getDogs = async () => {
   try {
     const allDogs = await axios.get("https://api.thedogapi.com/v1/breeds");
 
-    const perros = await allDogs.data.map((d) => {
+    const perros = await allDogs.data.map((d) => { //El método map() crea un nuevo array con los resultados de la llamada a la función indicada aplicados a cada uno de sus elementos.
       return {
         id: d.id,
         name: d.name,
@@ -31,12 +32,13 @@ const dogss = async () => {
     include: Temperament, //de la tabla temperaments para que funcione la vinculacion y la asignacion de los temperaments.
   });
 
-  dogsDB1 = JSON.stringify(dogsDB1);
+  dogsDB1 = JSON.stringify(dogsDB1);//convierte un objeto o valor de JavaScript en una cadena de texto JSON
   dogsDB1 = JSON.parse(dogsDB1); //// obtengo un json del arreglo donde aloje todos los dogs con sus temperamentos
+  //analiza una cadena de texto como JSON, transformando opcionalmente el valor producido por el análisis.
 
   //abajo itero sobre todos los registros de dogs para poder asiganrle a cada dogs los temperamentos correspondientes eso lo hago
   //mediante el reduce y el concat y mediante el map mapeo el arreglo temperamentos para extraer el nombre de cada temperamento.
-  dogsDB1 = dogsDB1.reduce(
+  dogsDB1 = dogsDB1.reduce(//ejecuta una función reductora sobre cada elemento de un array, devolviendo como resultado un único valor.
     (acc, el) =>
       acc.concat({
         ...el,

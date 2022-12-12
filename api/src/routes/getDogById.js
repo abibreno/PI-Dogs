@@ -13,8 +13,9 @@ router.get("/dogs/:idRaza", async (req, res) => {
       },
       include: Temperament,
     });
-    dogDB = JSON.stringify(dogDB);
-    dogDB = JSON.parse(dogDB);
+    dogDB = JSON.stringify(dogDB);//convierte un objeto o valor de JavaScript en una cadena de texto JSON
+    dogDB = JSON.parse(dogDB);// obtengo un json del arreglo donde aloje todos los dogs con sus temperamentos
+    //analiza una cadena de texto como JSON, transformando opcionalmente el valor producido por el análisis.
 
     //dejo un array con los nombres de temp solamente
     dogDB.temperaments = dogDB.temperaments.map((d) => d.name + ", ");
